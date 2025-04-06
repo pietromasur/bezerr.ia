@@ -1,93 +1,135 @@
-<!DOCTYPE html><html lang="pt-br">
-<head>
+ <!DOCTYPE html>
+ <html lang="pt-br">
+ <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bezerr.IA - Monitoramento de Leite</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/react-country-state-city@1.1.12/dist/react-country-state-city.css" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Roboto', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f5f5f5;
-      color: #333;
-    }
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 2rem;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-    .logo {
-      display: block;
-      max-width: 200px;
-      margin: 0 auto 1.5rem;
-    }
-    h1 {
-      text-align: center;
-      color: #1a6e3d;
-    }
-    p {
-      font-size: 1.1rem;
-      line-height: 1.6;
-    }
-    .cta {
-      text-align: center;
-      margin-top: 2rem;
-    }
-    input, textarea, button {
-      padding: 0.75rem;
-      font-size: 1rem;
-      border-radius: 4px;
-      border: 1px solid #ccc;
-      width: 100%;
-      margin-bottom: 1rem;
-      box-sizing: border-box;
-    }
-    button {
-      background: #1a6e3d;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #155f34;
-    }
-    footer {
-      text-align: center;
-      font-size: 0.9rem;
-      color: #666;
-      margin-top: 2rem;
-    }
+  body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f5f5f5;
+  color: #333;
+  }
+  .container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  .logo {
+  display: block;
+  max-width: 200px;
+  margin: 0 auto 1.5rem;
+  }
+  h1 {
+  text-align: center;
+  color: #1a6e3d;
+  }
+  p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  }
+  .cta {
+  text-align: center;
+  margin-top: 2rem;
+  }
+  input, textarea, select, button {
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 100%;
+  margin-bottom: 1rem;
+  box-sizing: border-box;
+  }
+  button {
+  background: #1a6e3d;
+  color: white;
+  border: none;
+  cursor: pointer;
+  }
+  button:hover {
+  background: #155f34;
+  }
+  footer {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 2rem;
+  }
   </style>
-</head>
-<body>
+ </head>
+ <body>
   <div class="container">
-    <img src="BezerrIA_logo.png" alt="Logo Bezerr.IA" class="logo">
-    <h1>Monitoramento Inteligente da Temperatura do Leite</h1>
-    <p>
-      A <strong>Bezerr.IA</strong> está desenvolvendo uma solução inovadora para monitorar, em tempo real, a temperatura do leite desde a ordenha até a coleta. Evite perdas, aumente sua rentabilidade e garanta a qualidade do seu produto com tecnologia acessível.
-    </p>
-    <p>
-      Estamos em fase de validação e buscamos produtores e laticínios interessados em participar dos projetos piloto. Cadastre-se para receber mais informações e fazer parte da transformação digital da cadeia leiteira.
-    </p>
-    <div class="cta">
-      <form action="https://formsubmit.co/pietromasur@hotmail.com" method="POST">
-        <input type="text" name="nome" placeholder="Nome" required>
-        <input type="email" name="email" placeholder="E-mail" required>
-        <input type="text" name="telefone" placeholder="Telefone" required>
-        <input type="text" name="cidade" placeholder="Cidade/Estado" required>
-        <input type="text" name="perfil" placeholder="Você é produtor ou laticínio?" required>
-        <textarea name="mensagem" placeholder="O que mais você gostaria de compartilhar?" rows="4"></textarea>
-        <button type="submit">Quero saber mais!</button>
-      </form>
-    </div>
-    <footer>
-      <p><strong>BEZERR.IA SOLUÇÕES PARA CADEIA DE PRODUÇÃO LEITEIRA INOVA SIMPLES (I.S.)</strong><br>
-      CNPJ: 60.251.615/0001-12</p>
-    </footer>
+  <img src="BezerrIA_logo.png" alt="Logo Bezerr.IA" class="logo">
+  <h1>Monitoramento Inteligente da Temperatura do Leite</h1>
+  <p>
+  A <strong>Bezerr.IA</strong> está desenvolvendo uma solução inovadora para monitorar, em tempo real, a temperatura do leite desde a ordenha até a coleta. Evite perdas, aumente sua rentabilidade e garanta a qualidade do seu produto com tecnologia acessível.
+  </p>
+  <p>
+  Estamos em fase de validação e buscamos produtores e laticínios interessados em participar dos projetos piloto. Cadastre-se para receber mais informações e fazer parte da transformação digital da cadeia leiteira.
+  </p>
+  <div class="cta">
+  <form action="https://formsubmit.co/pietromasur@hotmail.com" method="POST">
+  <input type="text" name="nome" placeholder="Nome" required>
+  <input type="email" name="email" placeholder="E-mail" required>
+  <input type="text" name="telefone" placeholder="Telefone" required>
+  
+  <div id="state-city-container">
+  <select name="estado" id="estado" required>
+  <option value="" disabled selected>Selecione o Estado</option>
+  </select>
+  <select name="cidade" id="cidade" required>
+  <option value="" disabled selected>Selecione a Cidade</option>
+  </select>
   </div>
-</body>
-</html>
+  
+  <select name="perfil" required>
+  <option value="" disabled selected>Você é produtor ou laticínio?</option>
+  <option value="produtor">Produtor</option>
+  <option value="laticinio">Laticínio</option>
+  </select>
+  <textarea name="mensagem" placeholder="O que mais você gostaria de compartilhar?" rows="4"></textarea>
+  <button type="submit">Quero saber mais!</button>
+  </form>
+  </div>
+  <footer>
+  <p><strong>BEZERR.IA SOLUÇÕES PARA CADEIA DE PRODUÇÃO LEITEIRA INOVA SIMPLES (I.S.)</strong><br>
+  CNPJ: 60.251.615/0001-12</p>
+  </footer>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/react-country-state-city@1.1.12/dist/react-country-state-city.min.js"></script>
+  <script>
+  window.onload = function() {
+  const { StateSelect, CitySelect } = window.reactCountryStateCity;
+  const stateContainer = document.getElementById('estado');
+  const cityContainer = document.getElementById('cidade');
+  
+  new StateSelect(document.getElementById('state-city-container'), {
+  countryCode: 'BR',
+  name: 'estado',
+  id: 'estado',
+  className: 'form-control',
+  onChange: (state) => {
+  cityContainer.innerHTML = '<option value="" disabled selected>Selecione a Cidade</option>';
+  if (state) {
+  new CitySelect(document.getElementById('state-city-container'), {
+  countryCode: 'BR',
+  stateCode: state.isoCode,
+  name: 'cidade',
+  id: 'cidade',
+  className: 'form-control',
+  });
+  }
+  },
+  });
+  };
+  </script>
+ </body>
+ </html>
