@@ -1,135 +1,370 @@
- <!DOCTYPE html>
- <html lang="pt-br">
- <head>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bezerr.IA - Monitoramento de Leite</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/react-country-state-city@1.1.12/dist/react-country-state-city.css" rel="stylesheet">
   <style>
-  body {
-  font-family: 'Roboto', sans-serif;
-  margin: 0;
-  padding: 0;
-  background: #f5f5f5;
-  color: #333;
-  }
-  .container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 2rem;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  }
-  .logo {
-  display: block;
-  max-width: 200px;
-  margin: 0 auto 1.5rem;
-  }
-  h1 {
-  text-align: center;
-  color: #1a6e3d;
-  }
-  p {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  }
-  .cta {
-  text-align: center;
-  margin-top: 2rem;
-  }
-  input, textarea, select, button {
-  padding: 0.75rem;
-  font-size: 1rem;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  width: 100%;
-  margin-bottom: 1rem;
-  box-sizing: border-box;
-  }
-  button {
-  background: #1a6e3d;
-  color: white;
-  border: none;
-  cursor: pointer;
-  }
-  button:hover {
-  background: #155f34;
-  }
-  footer {
-  text-align: center;
-  font-size: 0.9rem;
-  color: #666;
-  margin-top: 2rem;
-  }
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f5f5f5;
+      color: #333;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .logo {
+      display: block;
+      max-width: 200px;
+      margin: 0 auto 1.5rem;
+    }
+    h1 {
+      text-align: center;
+      color: #1a6e3d;
+    }
+    p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+    .cta {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    input, textarea, select, button {
+      padding: 0.75rem;
+      font-size: 1rem;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      width: 100%;
+      margin-bottom: 1rem;
+      box-sizing: border-box;
+    }
+    button {
+      background: #1a6e3d;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #155f34;
+    }
+    button:disabled {
+      background: #cccccc;
+      cursor: not-allowed;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #666;
+      margin-top: 2rem;
+    }
+    .loading {
+      color: #666;
+      font-style: italic;
+    }
+    .dynamic-field {
+      display: none;
+    }
   </style>
- </head>
- <body>
+</head>
+<body>
   <div class="container">
-  <img src="BezerrIA_logo.png" alt="Logo Bezerr.IA" class="logo">
-  <h1>Monitoramento Inteligente da Temperatura do Leite</h1>
-  <p>
-  A <strong>Bezerr.IA</strong> está desenvolvendo uma solução inovadora para monitorar, em tempo real, a temperatura do leite desde a ordenha até a coleta. Evite perdas, aumente sua rentabilidade e garanta a qualidade do seu produto com tecnologia acessível.
-  </p>
-  <p>
-  Estamos em fase de validação e buscamos produtores e laticínios interessados em participar dos projetos piloto. Cadastre-se para receber mais informações e fazer parte da transformação digital da cadeia leiteira.
-  </p>
-  <div class="cta">
-  <form action="https://formsubmit.co/pietromasur@hotmail.com" method="POST">
-  <input type="text" name="nome" placeholder="Nome" required>
-  <input type="email" name="email" placeholder="E-mail" required>
-  <input type="text" name="telefone" placeholder="Telefone" required>
-  
-  <div id="state-city-container">
-  <select name="estado" id="estado" required>
-  <option value="" disabled selected>Selecione o Estado</option>
-  </select>
-  <select name="cidade" id="cidade" required>
-  <option value="" disabled selected>Selecione a Cidade</option>
-  </select>
+    <img src="BezerrIA_logo.png" alt="Logo Bezerr.IA" class="logo">
+    <h1>Monitoramento Inteligente da Temperatura do Leite</h1>
+    <p>
+      A <strong>Bezerr.IA</strong> está desenvolvendo uma solução inovadora para monitorar, em tempo real, a temperatura do leite desde a ordenha até a coleta. Evite perdas, aumente sua rentabilidade e garanta a qualidade do seu produto com tecnologia acessível.
+    </p>
+    <p>
+      Estamos em fase de validação e buscamos produtores e laticínios interessados em participar dos projetos piloto. Cadastre-se para receber mais informações e fazer parte da transformação digital da cadeia leiteira.
+    </p>
+    <div class="cta">
+      <form id="contactForm" action="https://formsubmit.co/pietromasur@hotmail.com" method="POST">
+        <input type="text" name="nome" placeholder="Nome completo" required>
+        <input type="email" name="email" placeholder="E-mail profissional" required>
+        <input type="tel" name="telefone" placeholder="Telefone (com DDD)" required pattern="[0-9]{10,11}">
+        
+        <div id="state-city-container">
+          <select name="estado" id="estado" required onchange="loadCities()">
+            <option value="" disabled selected>Selecione seu estado</option>
+            <!-- States will be loaded here -->
+          </select>
+          <select name="cidade" id="cidade" required disabled>
+            <option value="" disabled selected>Primeiro selecione seu estado</option>
+          </select>
+        </div>
+        
+        <select name="perfil" id="perfil" required onchange="toggleFields()">
+          <option value="" disabled selected>Você é produtor ou laticínio?</option>
+          <option value="produtor">Produtor de leite</option>
+          <option value="laticinio">Laticínio/Cooperativa</option>
+          <option value="outro">Outro</option>
+        </select>
+        
+        <!-- Campos específicos para PRODUTOR -->
+        <div id="produtor-fields" class="dynamic-field">
+          <select name="producao_diaria" required>
+            <option value="" disabled selected>Qual sua produção diária média de leite?</option>
+            <option value="ate_100">Até 100 litros/dia</option>
+            <option value="100_500">100 a 500 litros/dia</option>
+            <option value="500_1000">500 a 1.000 litros/dia</option>
+            <option value="acima_1000">Acima de 1.000 litros/dia</option>
+          </select>
+          
+          <select name="tipo_ordenha">
+            <option value="" disabled selected>Tipo de ordenha</option>
+            <option value="manual">Manual</option>
+            <option value="mecanica">Mecânica</option>
+            <option value="robotizada">Robotizada</option>
+          </select>
+        </div>
+        
+        <!-- Campos específicos para LATICÍNIO -->
+        <div id="laticinio-fields" class="dynamic-field">
+          <select name="coleta_diaria" required>
+            <option value="" disabled selected>Quantos litros de leite você coleta diariamente?</option>
+            <option value="ate_1000">Até 1.000 litros/dia</option>
+            <option value="1000_5000">1.000 a 5.000 litros/dia</option>
+            <option value="5000_10000">5.000 a 10.000 litros/dia</option>
+            <option value="acima_10000">Acima de 10.000 litros/dia</option>
+          </select>
+          
+          <select name="numero_produtores">
+            <option value="" disabled selected>Quantos produtores fornecem para você?</option>
+            <option value="ate_10">Até 10 produtores</option>
+            <option value="10_50">10 a 50 produtores</option>
+            <option value="50_100">50 a 100 produtores</option>
+            <option value="acima_100">Mais de 100 produtores</option>
+          </select>
+          
+          <input type="text" name="nome_laticinio" placeholder="Nome do laticínio/cooperativa">
+        </div>
+        
+        <!-- Campo para OUTROS -->
+        <div id="outro-fields" class="dynamic-field">
+          <input type="text" name="qual_perfil" placeholder="Qual seu perfil? (Ex: técnico, distribuidor, etc)">
+        </div>
+        
+        <textarea name="mensagem" placeholder="Conte-nos sobre seu interesse no projeto ou suas necessidades específicas" rows="4"></textarea>
+        
+        <div style="text-align: left; margin-bottom: 1rem;">
+          <input type="checkbox" id="newsletter" name="newsletter" checked>
+          <label for="newsletter">Desejo receber novidades sobre a Bezerr.IA</label>
+        </div>
+        
+        <button type="submit" id="submitBtn">Quero participar do projeto piloto!</button>
+      </form>
+    </div>
+    <footer>
+      <p><strong>BEZERR.IA SOLUÇÕES PARA CADEIA DE PRODUÇÃO LEITEIRA INOVA SIMPLES (I.S.)</strong><br>
+      CNPJ: 60.251.615/0001-12 | contato@bezerria.com.br</p>
+    </footer>
   </div>
-  
-  <select name="perfil" required>
-  <option value="" disabled selected>Você é produtor ou laticínio?</option>
-  <option value="produtor">Produtor</option>
-  <option value="laticinio">Laticínio</option>
-  </select>
-  <textarea name="mensagem" placeholder="O que mais você gostaria de compartilhar?" rows="4"></textarea>
-  <button type="submit">Quero saber mais!</button>
-  </form>
-  </div>
-  <footer>
-  <p><strong>BEZERR.IA SOLUÇÕES PARA CADEIA DE PRODUÇÃO LEITEIRA INOVA SIMPLES (I.S.)</strong><br>
-  CNPJ: 60.251.615/0001-12</p>
-  </footer>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/react-country-state-city@1.1.12/dist/react-country-state-city.min.js"></script>
+
   <script>
-  window.onload = function() {
-  const { StateSelect, CitySelect } = window.reactCountryStateCity;
-  const stateContainer = document.getElementById('estado');
-  const cityContainer = document.getElementById('cidade');
-  
-  new StateSelect(document.getElementById('state-city-container'), {
-  countryCode: 'BR',
-  name: 'estado',
-  id: 'estado',
-  className: 'form-control',
-  onChange: (state) => {
-  cityContainer.innerHTML = '<option value="" disabled selected>Selecione a Cidade</option>';
-  if (state) {
-  new CitySelect(document.getElementById('state-city-container'), {
-  countryCode: 'BR',
-  stateCode: state.isoCode,
-  name: 'cidade',
-  id: 'cidade',
-  className: 'form-control',
-  });
-  }
-  },
-  });
-  };
+    // All Brazilian states with their codes
+    const brazilianStates = [
+      { sigla: 'AC', nome: 'Acre' },
+      { sigla: 'AL', nome: 'Alagoas' },
+      { sigla: 'AP', nome: 'Amapá' },
+      { sigla: 'AM', nome: 'Amazonas' },
+      { sigla: 'BA', nome: 'Bahia' },
+      { sigla: 'CE', nome: 'Ceará' },
+      { sigla: 'DF', nome: 'Distrito Federal' },
+      { sigla: 'ES', nome: 'Espírito Santo' },
+      { sigla: 'GO', nome: 'Goiás' },
+      { sigla: 'MA', nome: 'Maranhão' },
+      { sigla: 'MT', nome: 'Mato Grosso' },
+      { sigla: 'MS', nome: 'Mato Grosso do Sul' },
+      { sigla: 'MG', nome: 'Minas Gerais' },
+      { sigla: 'PA', nome: 'Pará' },
+      { sigla: 'PB', nome: 'Paraíba' },
+      { sigla: 'PR', nome: 'Paraná' },
+      { sigla: 'PE', nome: 'Pernambuco' },
+      { sigla: 'PI', nome: 'Piauí' },
+      { sigla: 'RJ', nome: 'Rio de Janeiro' },
+      { sigla: 'RN', nome: 'Rio Grande do Norte' },
+      { sigla: 'RS', nome: 'Rio Grande do Sul' },
+      { sigla: 'RO', nome: 'Rondônia' },
+      { sigla: 'RR', nome: 'Roraima' },
+      { sigla: 'SC', nome: 'Santa Catarina' },
+      { sigla: 'SP', nome: 'São Paulo' },
+      { sigla: 'SE', nome: 'Sergipe' },
+      { sigla: 'TO', nome: 'Tocantins' }
+    ];
+
+    // Load states when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      const stateSelect = document.getElementById('estado');
+      
+      // Sort states alphabetically
+      brazilianStates.sort((a, b) => a.nome.localeCompare(b.nome));
+      
+      // Add states to select
+      brazilianStates.forEach(state => {
+        const option = document.createElement('option');
+        option.value = state.sigla;
+        option.textContent = state.nome;
+        stateSelect.appendChild(option);
+      });
+    });
+
+    // Function to toggle fields based on profile selection
+    function toggleFields() {
+      const profile = document.getElementById('perfil').value;
+      
+      // Hide all dynamic fields first
+      document.querySelectorAll('.dynamic-field').forEach(field => {
+        field.style.display = 'none';
+        // Make fields not required when hidden
+        field.querySelectorAll('[required]').forEach(input => {
+          input.removeAttribute('required');
+        });
+      });
+      
+      // Show relevant fields and set required
+      if (profile === 'produtor') {
+        const produtorFields = document.getElementById('produtor-fields');
+        produtorFields.style.display = 'block';
+        produtorFields.querySelectorAll('select').forEach(select => {
+          select.setAttribute('required', '');
+        });
+      } 
+      else if (profile === 'laticinio') {
+        const laticinioFields = document.getElementById('laticinio-fields');
+        laticinioFields.style.display = 'block';
+        laticinioFields.querySelectorAll('select, input').forEach(field => {
+          if (field.name !== 'nome_laticinio') { // nome_laticinio não é obrigatório
+            field.setAttribute('required', '');
+          }
+        });
+      }
+      else if (profile === 'outro') {
+        const outroFields = document.getElementById('outro-fields');
+        outroFields.style.display = 'block';
+        outroFields.querySelector('input').setAttribute('required', '');
+      }
+    }
+
+    // Function to load cities based on selected state
+    function loadCities() {
+      const stateSelect = document.getElementById('estado');
+      const citySelect = document.getElementById('cidade');
+      const submitBtn = document.getElementById('submitBtn');
+      const selectedState = stateSelect.value;
+      
+      // Clear current cities and show loading
+      citySelect.innerHTML = '<option value="" disabled selected>Carregando cidades...</option>';
+      citySelect.disabled = true;
+      submitBtn.disabled = true;
+      
+      if (!selectedState) {
+        citySelect.innerHTML = '<option value="" disabled selected>Primeiro selecione seu estado</option>';
+        return;
+      }
+      
+      // Using IBGE API to get cities for selected state
+      fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${selectedState}/municipios`)
+        .then(response => response.json())
+        .then(cities => {
+          // Sort cities alphabetically
+          cities.sort((a, b) => a.nome.localeCompare(b.nome));
+          
+          // Clear and populate city select
+          citySelect.innerHTML = '<option value="" disabled selected>Selecione sua cidade</option>';
+          
+          cities.forEach(city => {
+            const option = document.createElement('option');
+            option.value = city.nome;
+            option.textContent = city.nome;
+            citySelect.appendChild(option);
+          });
+          
+          citySelect.disabled = false;
+          submitBtn.disabled = false;
+        })
+        .catch(error => {
+          console.error('Error loading cities:', error);
+          citySelect.innerHTML = '<option value="" disabled selected>Não foi possível carregar as cidades</option>';
+          
+          // Fallback: Add major cities for the selected state
+          addMajorCitiesFallback(selectedState);
+          citySelect.disabled = false;
+          submitBtn.disabled = false;
+        });
+    }
+
+    // Fallback function with major cities for each state
+    function addMajorCitiesFallback(stateCode) {
+      const citySelect = document.getElementById('cidade');
+      citySelect.innerHTML = '<option value="" disabled selected>Principais cidades</option>';
+      
+      // Major cities by state (simplified)
+      const majorCities = {
+        'AC': ['Rio Branco', 'Cruzeiro do Sul', 'Sena Madureira'],
+        'AL': ['Maceió', 'Arapiraca', 'Palmeira dos Índios'],
+        'AP': ['Macapá', 'Santana', 'Laranjal do Jari'],
+        'AM': ['Manaus', 'Parintins', 'Itacoatiara', 'Manacapuru'],
+        'BA': ['Salvador', 'Feira de Santana', 'Vitória da Conquista', 'Juazeiro'],
+        'CE': ['Fortaleza', 'Caucaia', 'Juazeiro do Norte', 'Maracanaú'],
+        'DF': ['Brasília'],
+        'ES': ['Vitória', 'Vila Velha', 'Cariacica', 'Serra'],
+        'GO': ['Goiânia', 'Aparecida de Goiânia', 'Anápolis', 'Rio Verde'],
+        'MA': ['São Luís', 'Imperatriz', 'Timon', 'Caxias'],
+        'MT': ['Cuiabá', 'Várzea Grande', 'Rondonópolis', 'Sinop'],
+        'MS': ['Campo Grande', 'Dourados', 'Três Lagoas', 'Corumbá'],
+        'MG': ['Belo Horizonte', 'Uberlândia', 'Contagem', 'Juiz de Fora'],
+        'PA': ['Belém', 'Ananindeua', 'Santarém', 'Marabá'],
+        'PB': ['João Pessoa', 'Campina Grande', 'Santa Rita', 'Patos'],
+        'PR': ['Curitiba', 'Londrina', 'Maringá', 'Ponta Grossa'],
+        'PE': ['Recife', 'Jaboatão dos Guararapes', 'Olinda', 'Caruaru'],
+        'PI': ['Teresina', 'Parnaíba', 'Picos', 'Floriano'],
+        'RJ': ['Rio de Janeiro', 'São Gonçalo', 'Duque de Caxias', 'Nova Iguaçu'],
+        'RN': ['Natal', 'Mossoró', 'Parnamirim', 'São Gonçalo do Amarante'],
+        'RS': ['Porto Alegre', 'Caxias do Sul', 'Pelotas', 'Canoas'],
+        'RO': ['Porto Velho', 'Ji-Paraná', 'Ariquemes', 'Vilhena'],
+        'RR': ['Boa Vista', 'Rorainópolis', 'Caracaraí'],
+        'SC': ['Florianópolis', 'Joinville', 'Blumenau', 'São José'],
+        'SP': ['São Paulo', 'Guarulhos', 'Campinas', 'São Bernardo do Campo'],
+        'SE': ['Aracaju', 'Nossa Senhora do Socorro', 'Lagarto', 'Itabaiana'],
+        'TO': ['Palmas', 'Araguaína', 'Gurupi', 'Porto Nacional']
+      };
+      
+      if (majorCities[stateCode]) {
+        majorCities[stateCode].forEach(city => {
+          const option = document.createElement('option');
+          option.value = city;
+          option.textContent = city;
+          citySelect.appendChild(option);
+        });
+        
+        // Add option for other cities
+        const otherOption = document.createElement('option');
+        otherOption.value = 'outra';
+        otherOption.textContent = 'Outra cidade (especifique no campo de mensagem)';
+        citySelect.appendChild(otherOption);
+      }
+    }
+
+    // Form validation
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      const citySelect = document.getElementById('cidade');
+      if (citySelect.value === 'outra') {
+        const message = document.getElementsByName('mensagem')[0];
+        if (!message.value.includes('Cidade:')) {
+          alert('Por favor, especifique sua cidade no campo de mensagem');
+          e.preventDefault();
+        }
+      }
+    });
   </script>
- </body>
- </html>
+</body>
+</html>
